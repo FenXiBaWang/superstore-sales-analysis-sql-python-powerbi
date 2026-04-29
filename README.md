@@ -34,13 +34,17 @@ This project answers:
 
 ## 5. Project Structure
 /sql -> SQL queries for analysis
+- ([SQL Queries for Superstore Data.sql](https://github.com/user-attachments/files/27191789/SQL.Queries.for.Superstore.Data.sql))
 
 /python -> Data cleaning & analysis scripts
+- SQL Queries Countercheck ([sql_queries_countercheck.ipynb](https://github.com/user-attachments/files/27191795/sql_queries_countercheck.ipynb))
+- Deep Analysis ([deep_analysis.ipynb](https://github.com/user-attachments/files/27191794/deep_analysis.ipynb))
 
 /dashboard -> Power BI dashboard file (.pbix)
 
 /data -> Dataset (raw / cleaned)
-
+- [sample_superstore.csv](https://github.com/user-attachments/files/27191903/sample_superstore.csv)
+- [superstore_cleaned.csv](https://github.com/user-attachments/files/27191910/superstore_cleaned.csv)
 
 ---
 
@@ -101,14 +105,18 @@ The dashboard consists of 3 main pages:
 ### Page 1: Overview
 - Sales, Profit, and KPI summary
 - High-level performance trends
+<img width="1317" height="737" alt="Dashboard Page 1" src="https://github.com/user-attachments/assets/1a743836-88a4-4e43-b71c-23816261947b" />
 
 ### Page 2: Regional & Category Analysis
 - Regional performance comparison
 - Category and sub-category breakdown
+<img width="1297" height="741" alt="Dashboard Page 2" src="https://github.com/user-attachments/assets/50ef398b-8ef3-41fc-b7d5-d4f8603d9e7c" />
+
 
 ### Page 3: Profit Drivers
 - Profit vs Discount analysis
 - Scatter plot identifying loss patterns
+<img width="1311" height="738" alt="Dashboard Page 3" src="https://github.com/user-attachments/assets/89a43efe-d276-4af9-a780-b2180d5bc65e" />
 
 ---
 
