@@ -54,7 +54,7 @@ SELECT
     COUNT(*) - COUNT(profit) AS profit_nulls
 FROM store_orders;
 
------------- Total sales & profit by Month -----------
+-- Total sales & profit by Month --
 CREATE VIEW monthly_sales_profit AS
 	SELECT 
         TO_CHAR(order_date, 'Mon, YYYY') AS month_year, -- Get month in string 'Jan, Feb, Mar...'
@@ -67,7 +67,7 @@ CREATE VIEW monthly_sales_profit AS
 	ORDER BY EXTRACT(YEAR FROM order_date) ASC, EXTRACT(MONTH FROM order_date) ASC;
 SELECT * FROM monthly_sales_profit;
 
------------------- Total Revenue --------------------
+-- Total Revenue --
 CREATE VIEW total_customers_revenue AS
 	WITH customers_revenue AS (
 		SELECT customer_id, customer_name,
@@ -104,7 +104,7 @@ CREATE VIEW loss_making_products AS
 	ORDER BY total_profit ASC ;
 SELECT * FROM loss_making_products;
 
--------------- Region Performance ---------------
+--Regional Performance --
 CREATE VIEW region_sales AS
 	WITH aggregated_region_sales AS (
 	SELECT region, 
@@ -122,7 +122,7 @@ CREATE VIEW region_sales AS
 	ORDER BY total_sales DESC;
 SELECT * FROM region_sales;
 
------------- First purchase date per customer -------- 
+--First purchase date per customer --
 CREATE VIEW customer_first_purchase_date AS
 	SELECT customer_id, customer_name, order_date
 	FROM (
@@ -136,10 +136,10 @@ CREATE VIEW customer_first_purchase_date AS
 	ORDER BY order_date;
 SELECT * FROM customer_first_purchase_date
 
--------------- Customer repeat purchase rate ---------------
+-- Customer repeat purchase rate --
 CREATE VIEW customer_repeat_purchase_rate AS
 	WITH customer_order_counts AS (
-    -- Step 1: Count unique orders for each customer
+    -- Count unique orders for each customer
 	    SELECT 
 	        customer_id, 
 	        COUNT(DISTINCT order_id) AS total_orders
@@ -147,13 +147,13 @@ CREATE VIEW customer_repeat_purchase_rate AS
 	    GROUP BY customer_id
 		),
 	repeat_metrics AS (
-	-- Step 2: Categorize customers as "Repeat" (1) or "Single" (0)
+	-- Categorize customers as "Repeat" (1) or "Single" (0)
 	    SELECT 
 	        COUNT(*) AS total_customers,
 	        SUM(CASE WHEN total_orders > 1 THEN 1 ELSE 0 END) AS repeat_customers
 	    FROM customer_order_counts
 	)
-	-- Step 3: Calculate the percentage
+	-- Calculate the percentage
 	SELECT 
 	    total_customers, repeat_customers,
 	    ROUND((repeat_customers::NUMERIC / total_customers) * 100, 2) AS repeat_purchase_rate_percent
@@ -163,15 +163,15 @@ SELECT * FROM customer_repeat_purchase_rate
 ----------- Customer Lifetime Value (total spending per customer)-----------
 CREATE VIEW customer_lifetime_value AS
 	SELECT customer_id, customer_name,
-    -- 1. Total Profit generated (The "Value" part of CLV)
+    -- Total Profit generated (The "Value" part of CLV)
     SUM(profit) AS lifetime_profit,
-    -- 2. Total Sales generated
+    -- Total Sales generated
     SUM(sales) AS lifetime_sales,    
-    -- 3. Number of unique orders placed
+    -- Number of unique orders placed
     COUNT(DISTINCT order_id) AS total_orders,   
-    -- 4. Days between their first and last purchase
+    -- Days between their first and last purchase
     MAX(order_date) - MIN(order_date) AS customer_lifespan_days,   
-    -- 5. Average Profit per Order
+    -- Average Profit per Order
     ROUND(SUM(profit) / NULLIF(COUNT(DISTINCT order_id), 0), 2) AS avg_order_value_profit
 	FROM store_orders
 	GROUP BY customer_id, customer_name
@@ -195,7 +195,7 @@ CREATE VIEW mom_and_yoy AS
 	ORDER BY EXTRACT(YEAR FROM order_date), EXTRACT(MONTH FROM order_date);
 SELECT * FROM mom_and_yoy
 
------ Catergory vs Overall Average ------
+-- Catergory vs Overall Average --
 CREATE VIEW category_vs_overall_avg AS
 	WITH category_avgs AS (
 	    SELECT 
@@ -216,10 +216,9 @@ CREATE VIEW category_vs_overall_avg AS
 	    ROUND(((cat_avg_profit - overall_store_avg) / NULLIF(overall_store_avg, 0)), 2) AS performance_ratio
 	FROM category_avgs
 	ORDER BY performance_ratio DESC;
-
 SELECT * FROM category_vs_overall_avg
 
-------- Aggregate Segments ---------
+-- Aggregate Underperform Segments --
 CREATE VIEW underperform_segments AS
 	WITH segment_stats AS (
 	    SELECT 
@@ -239,23 +238,3 @@ CREATE VIEW underperform_segments AS
 	GROUP BY segment, total_sales, total_profit, order_count, store_avg_margin
 	ORDER BY profit_margin_pct;
 SELECT * FROM underperform_segments
-
--- DROP VIEW underperform_segments
--- DROP TABLE IF EXISTS store_orders CASCADE; 
-
--- Export VIEW to CSV
-COPY (SELECT * FROM monthly_total_sales_profit)
-TO 'C:\Users\Public\Downloads\monthly_total_sales_profit.csv'
-WITH (FORMAT CSV, HEADER);
-
-COPY (SELECT * FROM products_profit)
-TO 'C:\Users\Public\Downloads\products_profit.csv'
-WITH (FORMAT CSV, HEADER);
-
-COPY (SELECT * FROM region_average_discount_and_profit)
-TO 'C:\Users\Public\Downloads\region_average_discount_and_profit.csv'
-WITH (FORMAT CSV, HEADER);
-
-COPY (SELECT * FROM customer_lifetime_value)
-TO 'C:\Users\Public\Downloads\customer_lifetime_value.csv'
-WITH (FORMAT CSV, HEADER);
