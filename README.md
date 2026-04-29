@@ -135,10 +135,3 @@ This analysis helps:
 The project highlights that revenue growth alone is not sufficient.  
 Controlling discounts and focusing on high-margin segments is critical for sustainable profitability.
 
----
-
-## 11. Future Improvements
-
-- Build predictive models for profit optimization
-- Enhance forecasting using time-series models
-- Deploy dashboard for real-time business monitoring
