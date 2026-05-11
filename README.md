@@ -18,7 +18,7 @@ This project answers:
 
 ## 3. Tools & Technologies
 - SQL (data extraction & validation)
-- Python (Pandas, NumPy, Matplotlib, Seaborn)
+- Python (Pandas)
 - Power BI (dashboard & visualization)
 
 ---
