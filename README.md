@@ -90,11 +90,29 @@ This project answers:
 
 ## 7. Key Insights
 
-- High discounts significantly reduce profitability and create loss-making transactions
-- Some regions generate high revenue but have low profit margins due to discounting
-- Specific categories and sub-categories consistently operate at a loss
-- Profitability is driven more by margin control than sales volume
-- Certain region-category combinations are the main source of losses
+### 1. Aggressive Discounting Is Eroding Profitability
+The analysis revealed a strong negative relationship between discount levels and profit margins. Transactions with higher discount rates consistently generated lower profitability, with several discount brackets resulting in net losses. This indicates that revenue growth is being partially driven by unsustainable pricing strategies.
+
+### 2. Revenue Growth Does Not Equate to Profit Growth
+Several regions and product segments generated high sales volume but underperformed in profitability. The findings suggest that focusing solely on revenue KPIs may mask underlying margin deterioration and operational inefficiencies.
+
+### 3. Losses Are Concentrated in Specific Region–Category Combinations
+Root cause analysis identified a small number of region and category intersections responsible for a disproportionate share of total losses. This highlights the importance of targeted corrective actions rather than broad company-wide adjustments.
+
+### 4. Profitability Is More Sensitive to Margin Control Than Sales Volume
+Correlation analysis showed that profit performance is influenced more heavily by discount management and product mix than by transaction volume alone. High sales activity without margin discipline does not translate into sustainable business performance.
+
+### 5. Certain Product Categories Consistently Underperform
+Category-level analysis identified recurring loss-making sub-categories despite stable sales activity. This suggests structural pricing, discounting, or cost allocation issues within specific product groups.
+
+### 6. Customer Value Distribution Is Highly Uneven
+Customer analysis showed that a relatively small segment of customers contributes a significant share of total profit. This creates opportunities for targeted retention strategies and customer segmentation initiatives.
+
+### 7. Seasonal Demand Patterns Present Forecasting Opportunities
+Monthly trend analysis revealed recurring seasonal fluctuations in sales performance. These patterns can be leveraged to improve inventory planning, sales forecasting, and promotional timing.
+
+### 8. High-Risk Customers Indicate Potential Retention Gaps
+Customer churn-risk analysis identified inactive one-time buyers with long purchase gaps, suggesting opportunities to improve customer retention and repeat purchase behavior through targeted engagement strategies.
 
 ---
 
